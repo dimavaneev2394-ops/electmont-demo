@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>НАЗВАНИЕ КОМПАНИИ — комплекс инженерных услуг</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --black: #0d0d0d;
+    --dark: #181818;
+    --dark2: #222222;
+    --accent: #f5a800;
+    --accent2: #e8950a;
+    --white: #ffffff;
+    --gray: #a0a0a0;
+    --lightgray: #f4f4f4;
+    --text: #2a2a2a;
+  }
+
+  body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    color: var(--text);
+    background: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ====== HEADER ====== */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: rgba(13,13,13,0.97);
+    backdrop-filter: blur(8px);
+    padding: 0 40px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(245,168,0,0.15);
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+  .logo-icon {
+    width: 38px; height: 38px;
+    background: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 900;
+    font-size: 14px;
+    color: var(--black);
+    letter-spacing: -0.5px;
+    /* ЗАМЕНИ на <img src="логотип.png"> */
+  }
+  .logo-text {
+    color: var(--white);
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+  nav a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    transition: color 0.2s;
+    padding: 0 20px;
+  }
+  nav a:hover { color: var(--accent); }
+  nav .dot {
+    color: var(--accent);
+    font-size: 8px;
+    line-height: 1;
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .header-phone {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+  .btn-callback {
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 8px 18px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+  .btn-callback:hover {
+    background: var(--accent);
+    color: var(--black);
+  }
+
+  /* ====== HERO ====== */
+  .hero {
+    min-height: 100vh;
+    background: var(--black);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 100px 40px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(245,168,0,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    color: var(--accent);
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    font-weight: 600;
+  }
+  .hero h1 {
+    color: var(--white);
+    font-size: clamp(36px, 6vw, 80px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -1px;
+    max-width: 800px;
+    margin-bottom: 28px;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero-sub {
+    color: rgba(255,255,255,0.55);
+    font-size: 17px;
+    max-width: 520px;
+    line-height: 1.7;
+    margin-bottom: 48px;
+  }
+  .hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--accent);
+    color: var(--black);
+    padding: 16px 36px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s;
+  }
+  .btn-primary:hover { background: var(--accent2); }
+  .btn-secondary {
+    color: rgba(255,255,255,0.65);
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .btn-secondary:hover { color: var(--white); border-color: var(--white); }
+
+  .hero-badges {
+    margin-top: 72px;
+    display: flex;
+    gap: 48px;
+    flex-wrap: wrap;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 40px;
+  }
+  .badge { }
+  .badge-num {
+    color: var(--accent);
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -1px;
+  }
+  .badge-label {
+    color: rgba(255,255,255,0.45);
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    margin-top: 4px;
+  }
+
+  /* ====== SECTION COMMON ====== */
+  section { padding: 100px 40px; }
+  .section-label {
+    color: var(--accent);
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+    margin-bottom: 24px;
+    color: var(--black);
+  }
+  .section-title.white { color: var(--white); }
+
+  /* ====== ABOUT ====== */
+  .about { background: var(--white); }
+  .about-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .about-text p {
+    color: #555;
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+  .about-promise {
+    margin-top: 32px;
+    padding: 28px;
+    background: var(--lightgray);
+    border-left: 3px solid var(--accent);
+  }
+  .about-promise p {
+    color: var(--black);
+    font-size: 15px;
+    line-height: 1.7;
+    font-weight: 500;
+  }
+  .about-promo {
+    background: var(--black);
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 360px;
+  }
+  .promo-label {
+    color: rgba(255,255,255,0.4);
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+  .promo-big {
+    color: var(--accent);
+    font-size: 72px;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -2px;
+    margin: 20px 0;
+  }
+  .promo-desc {
+    color: var(--white);
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: 24px;
+  }
+
+  /* ====== SERVICES ====== */
+  .services { background: var(--lightgray); }
+  .services-header {
+    max-width: 1200px;
+    margin: 0 auto 64px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 40px;
+  }
+  .services-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+  .service-card {
+    background: var(--white);
+    padding: 40px 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    transition: transform 0.2s;
+    cursor: pointer;
+  }
+  .service-card:hover { transform: translateY(-4px); }
+  .service-card.featured {
+    background: var(--black);
+    grid-row: span 1;
+  }
+  .service-num {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .service-icon {
+    width: 48px; height: 48px;
+    background: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+  }
+  .service-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--black);
+    line-height: 1.2;
+  }
+  .service-card.featured .service-title { color: var(--white); }
+  .service-desc {
+    font-size: 14px;
+    color: #777;
+    line-height: 1.7;
+    flex: 1;
+  }
+  .service-card.featured .service-desc { color: rgba(255,255,255,0.5); }
+  .service-link {
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .service-link::after { content: '→'; }
+
+  /* ====== WHY US ====== */
+  .why { background: var(--black); }
+  .why-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .why-grid {
+    margin-top: 64px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.06);
+  }
+  .why-item {
+    background: var(--black);
+    padding: 40px 32px;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .why-icon {
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+  .why-title {
+    color: var(--accent);
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    letter-spacing: 0.3px;
+  }
+  .why-desc {
+    color: rgba(255,255,255,0.45);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  /* ====== PORTFOLIO ====== */
+  .portfolio { background: var(--white); }
+  .portfolio-header {
+    max-width: 1200px;
+    margin: 0 auto 48px;
+  }
+  .portfolio-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  .portfolio-item {
+    aspect-ratio: 3/4;
+    background: var(--lightgray);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .portfolio-item:first-child { grid-column: span 2; aspect-ratio: auto; min-height: 300px; }
+  .portfolio-placeholder {
+    width: 100%; height: 100%;
+    display: flex;
+    align-items: flex-end;
+    padding: 20px;
+    background: linear-gradient(135deg, #e0e0e0 0%, #c8c8c8 100%);
+    position: relative;
+  }
+  .portfolio-placeholder::after {
+    content: 'ФОТО';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: rgba(0,0,0,0.2);
+    font-weight: 700;
+  }
+  .portfolio-caption {
+    background: rgba(0,0,0,0.7);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+  }
+
+  /* ====== CONTACT ====== */
+  .contact { background: var(--lightgray); }
+  .contact-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .contact-info { }
+  .contact-item {
+    margin-bottom: 32px;
+  }
+  .contact-item-label {
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .contact-item-value {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--black);
+    text-decoration: none;
+    display: block;
+  }
+  .contact-item-value:hover { color: var(--accent); }
+  .contact-socials {
+    display: flex;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .social-btn {
+    background: var(--black);
+    color: var(--white);
+    padding: 12px 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: background 0.2s;
+  }
+  .social-btn:hover { background: var(--accent); color: var(--black); }
+  .contact-form { }
+  .form-title {
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 32px;
+    color: var(--black);
+    letter-spacing: -0.3px;
+  }
+  .form-group { margin-bottom: 16px; }
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    background: var(--white);
+    border: 1px solid #ddd;
+    border-radius: 0;
+    padding: 16px 20px;
+    font-size: 15px;
+    font-family: inherit;
+    color: var(--black);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus { border-color: var(--accent); }
+  .form-group textarea { height: 120px; resize: vertical; }
+  .form-privacy {
+    font-size: 11px;
+    color: #aaa;
+    margin: 16px 0;
+    line-height: 1.6;
+  }
+  .btn-submit {
+    width: 100%;
+    background: var(--accent);
+    color: var(--black);
+    border: none;
+    padding: 18px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.2s;
+  }
+  .btn-submit:hover { background: var(--accent2); }
+
+  /* ====== FOOTER ====== */
+  footer {
+    background: var(--black);
+    padding: 48px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .footer-logo { color: var(--white); font-size: 18px; font-weight: 800; letter-spacing: 2px; }
+  .footer-links { display: flex; gap: 28px; }
+  .footer-links a { color: rgba(255,255,255,0.4); font-size: 12px; text-decoration: none; letter-spacing: 0.5px; }
+  .footer-links a:hover { color: var(--accent); }
+  .footer-copy { color: rgba(255,255,255,0.25); font-size: 11px; }
+
+  /* ====== MOBILE ====== */
+  @media (max-width: 900px) {
+    header { padding: 0 20px; flex-wrap: wrap; height: auto; gap: 8px; padding: 12px 20px; }
+    nav { order: 3; width: 100%; overflow-x: auto; padding-bottom: 4px; }
+    nav a { padding: 0 12px; font-size: 12px; white-space: nowrap; }
+    section { padding: 60px 20px; }
+    .about-inner,
+    .contact-inner { grid-template-columns: 1fr; gap: 40px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr 1fr; }
+    .portfolio-grid { grid-template-columns: 1fr 1fr; }
+    .portfolio-item:first-child { grid-column: span 2; }
+    .services-header { flex-direction: column; align-items: flex-start; }
+    footer { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a href="#" class="logo">
+    <div class="logo-icon">ЭМ</div><!-- ЗАМЕНИ на свой логотип -->
+    <span class="logo-text">НАЗВАНИЕ</span>
+  </a>
+  <nav>
+    <a href="#portfolio">Портфолио</a>
+    <span class="dot">●</span>
+    <a href="#services">Услуги</a>
+    <span class="dot">●</span>
+    <a href="#partners">Партнёрство с дизайнерами</a>
+    <span class="dot">●</span>
+    <a href="#contact">Контакты</a>
+  </nav>
+  <div class="header-right">
+    <a class="header-phone" href="tel:+70000000000">+7 (000) 000-00-00</a>
+    <a class="btn-callback" href="#contact">Заказать звонок</a>
+  </div>
+</header>
+
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-eyebrow">Комплекс инженерных услуг · Москва и область</div>
+  <h1>Инженерные&nbsp;системы<br><span>под ключ</span></h1>
+  <p class="hero-sub">Электромонтаж, сантехника, умный дом. Работаем строго по договору. Гарантия 5 лет на все виды работ и материалы.</p>
+  <div class="hero-actions">
+    <a class="btn-primary" href="#contact">Получить расчёт</a>
+    <a class="btn-secondary" href="#portfolio">Смотреть работы</a>
+  </div>
+  <div class="hero-badges">
+    <div class="badge">
+      <div class="badge-num">5</div>
+      <div class="badge-label">лет гарантии</div>
+    </div>
+    <div class="badge">
+      <div class="badge-num">200+</div>
+      <div class="badge-label">объектов сдано</div>
+    </div>
+    <div class="badge">
+      <div class="badge-num">5</div>
+      <div class="badge-label">направлений</div>
+    </div>
+    <div class="badge">
+      <div class="badge-num">20%</div>
+      <div class="badge-label">скидка на чистовую электрику</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-text">
+      <div class="section-label">О компании</div>
+      <h2 class="section-title">Мастера,<br>а не дилетанты</h2>
+      <p>Компания выполняет комплекс инженерных работ любого уровня сложности. Мы используем современное высокотехнологичное оборудование — это позволяет воплотить в жизнь даже самую смелую задумку.</p>
+      <p>Работаем только с официальными поставщиками и сертифицированными материалами. Собственный склад позволяет предлагать лучшие цены.</p>
+      <div class="about-promise">
+        <p>Честная смета · Соблюдение ПУЭ, ГОСТ, СНиП · Сдача в срок по договору · Итоговая стоимость без сюрпризов</p>
+      </div>
+    </div>
+    <div class="about-promo">
+      <div class="promo-label">Специальное предложение</div>
+      <div>
+        <div class="promo-big">−20%</div>
+        <div class="promo-desc">на чистовую электрику при заказе черновых работ</div>
+        <a class="btn-primary" href="#contact">Оставить заявку</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-header">
+    <div>
+      <div class="section-label">Направления</div>
+      <h2 class="section-title">5 видов<br>инженерных работ</h2>
+    </div>
+    <p style="color:#888;font-size:15px;max-width:320px;line-height:1.7;">Полный цикл от проектирования до сдачи объекта. Каждый проект уникален.</p>
+  </div>
+  <div class="services-grid">
+
+    <div class="service-card featured">
+      <div class="service-num">01</div>
+      <div class="service-icon">⚡</div>
+      <div class="service-title">Электромонтаж</div>
+      <div class="service-desc">Черновой и чистовой монтаж любой сложности: прокладка кабеля, сборка щитового оборудования, установка розеток и выключателей.</div>
+      <a class="service-link" href="#contact">Подробнее</a>
+    </div>
+
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <div class="service-icon" style="background:var(--lightgray);">🔧</div>
+      <div class="service-title">Сантехмонтаж</div>
+      <div class="service-desc">Водоснабжение, отопление, водоотведение. Установка котельных, тёплых полов, бойлеров. Полный комплекс под ключ.</div>
+      <a class="service-link" href="#contact">Подробнее</a>
+    </div>
+
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <div class="service-icon" style="background:var(--lightgray);">📡</div>
+      <div class="service-title">Слаботочные системы</div>
+      <div class="service-desc">Пожарная и охранная сигнализация, видеонаблюдение, компьютерная сеть, диодное освещение, структурированные кабельные сети.</div>
+      <a class="service-link" href="#contact">Подробнее</a>
+    </div>
+
+    <div class="service-card">
+      <div class="service-num">04</div>
+      <div class="service-icon" style="background:var(--lightgray);">🏠</div>
+      <div class="service-title">Умный дом</div>
+      <div class="service-desc">Индивидуальное проектирование и монтаж: управление освещением, климатом, безопасностью, шторами из одного интерфейса.</div>
+      <a class="service-link" href="#contact">Подробнее</a>
+    </div>
+
+    <div class="service-card">
+      <div class="service-num">05</div>
+      <div class="service-icon" style="background:var(--lightgray);">📐</div>
+      <div class="service-title">Проектирование</div>
+      <div class="service-desc">Полный пакет технической документации по ПУЭ, СП. Правильный расчёт — основа безопасной и экономичной системы.</div>
+      <a class="service-link" href="#contact">Подробнее</a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- WHY US -->
+<section class="why">
+  <div class="why-inner">
+    <div class="section-label">Почему мы</div>
+    <h2 class="section-title white">Четыре<br>причины выбрать нас</h2>
+    <div class="why-grid">
+      <div class="why-item">
+        <div class="why-icon">✦</div>
+        <div class="why-title">Эксклюзивность</div>
+        <div class="why-desc">Каждый проект уникален — другого такого нет. Индивидуальный подход к каждому объекту.</div>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">◈</div>
+        <div class="why-title">Эстетика</div>
+        <div class="why-desc">Нам важна визуальная составляющая. Аккуратная работа и чистота на объекте — наш стандарт.</div>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">◎</div>
+        <div class="why-title">Безопасность</div>
+        <div class="why-desc">Гарантия 5 лет безотказной работы. Строгое соблюдение норм ПУЭ, ГОСТ, СНиП, СП.</div>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">⊞</div>
+        <div class="why-title">Эргономика</div>
+        <div class="why-desc">Каждый проект продуман с точки зрения удобства эксплуатации — на годы вперёд.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- PORTFOLIO -->
+<section class="portfolio" id="portfolio">
+  <div class="portfolio-header">
+    <div class="section-label">Портфолио</div>
+    <h2 class="section-title">Убедитесь<br>в качестве работы</h2>
+  </div>
+  <div class="portfolio-grid">
+    <div class="portfolio-item">
+      <div class="portfolio-placeholder"></div>
+      <div class="portfolio-caption">Объект 1 — Электромонтаж</div>
+    </div>
+    <div class="portfolio-item">
+      <div class="portfolio-placeholder" style="background:linear-gradient(135deg,#d4d4d4,#bbb)"></div>
+      <div class="portfolio-caption">Объект 2</div>
+    </div>
+    <div class="portfolio-item">
+      <div class="portfolio-placeholder" style="background:linear-gradient(135deg,#c8c8c8,#b0b0b0)"></div>
+      <div class="portfolio-caption">Объект 3</div>
+    </div>
+    <div class="portfolio-item">
+      <div class="portfolio-placeholder" style="background:linear-gradient(135deg,#d8d8d8,#c0c0c0)"></div>
+      <div class="portfolio-caption">Объект 4</div>
+    </div>
+    <div class="portfolio-item">
+      <div class="portfolio-placeholder" style="background:linear-gradient(135deg,#cccccc,#b8b8b8)"></div>
+      <div class="portfolio-caption">Объект 5</div>
+    </div>
+    <div class="portfolio-item">
+      <div class="portfolio-placeholder" style="background:linear-gradient(135deg,#d0d0d0,#bcbcbc)"></div>
+      <div class="portfolio-caption">Объект 6</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="contact-info">
+      <div class="section-label">Контакты</div>
+      <h2 class="section-title">Обсудим<br>ваш проект</h2>
+
+      <div class="contact-item">
+        <div class="contact-item-label">Телефон</div>
+        <a class="contact-item-value" href="tel:+70000000000">+7 (000) 000-00-00</a>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-label">Почта</div>
+        <a class="contact-item-value" href="mailto:info@example.ru">info@example.ru</a>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-label">Режим работы</div>
+        <span class="contact-item-value" style="font-size:16px;font-weight:500;color:#555;">Пн–Вс: 9:00–21:00</span>
+      </div>
+
+      <div class="contact-socials">
+        <a class="social-btn" href="#">Telegram</a>
+        <a class="social-btn" href="#">WhatsApp</a>
+        <a class="social-btn" href="#">ВКонтакте</a>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <div class="form-title">Оставить заявку</div>
+      <div class="form-group">
+        <input type="text" placeholder="Ваше имя">
+      </div>
+      <div class="form-group">
+        <input type="tel" placeholder="Телефон">
+      </div>
+      <div class="form-group">
+        <textarea placeholder="Опишите ваш объект и задачу"></textarea>
+      </div>
+      <p class="form-privacy">Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности</p>
+      <button class="btn-submit">Отправить заявку</button>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">НАЗВАНИЕ КОМПАНИИ</div>
+  <div class="footer-links">
+    <a href="#services">Услуги</a>
+    <a href="#portfolio">Портфолио</a>
+    <a href="#contact">Контакты</a>
+    <a href="#">Политика конфиденциальности</a>
+  </div>
+  <div class="footer-copy">© 2025 Все права защищены</div>
+</footer>
+
+</body>
+</html>
